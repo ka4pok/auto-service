@@ -1,32 +1,58 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app">
+        <component :is="layout" >
+            <router-view/>
+        </component>
     </div>
-    <router-view/>
-  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+    import BlackLayout from "./layouts/BlackLayout";
+    import WhiteLayout from "./layouts/WhiteLayout";
 
-#nav {
-  padding: 30px;
+    export default {
+        data(){
+            return{
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+            }
+        },
+        computed:{
+          layout(){
+              return (this.$route.meta.layout || 'black') + '-layout'
+          },
+        },
+        methods:{
+        },
+        components: {
+            WhiteLayout, BlackLayout
+        },
     }
-  }
-}
+</script>
+
+<style lang="scss">
+
+    @font-face {
+        font-family: 'Comfortaa-VariableFont_wght';
+
+        src: local('Proxima Nova Extra Condensed Extrabold'), local('ProximaNovaExCn-Extrabld'),
+        url('assets/Comfortaa-VariableFont_wght.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    * {
+        font-family: "Comfortaa-VariableFont_wght", serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    #app {
+
+
+    }
+    .mainBg{
+
+    }
+
 </style>
